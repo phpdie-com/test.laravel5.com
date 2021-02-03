@@ -82,10 +82,13 @@ class ExampleController extends AdminController
         $grid->quickSearch('title');//快捷搜索
 
         $grid->filter(function (Grid\Filter $filter) {
+            // 去掉默认的id过滤器
+            $filter->disableIdFilter();
+
             $filter->like('title');
             $filter->like('content');
             //$filter->equal('status')->select(['1'=>'启用','2'=>'禁用']);
-            $filter->equal('status', '状态')->radio(['1' => '启用', '2' => '禁用']);
+            $filter->equal('status', '状态')->radio(['1' => '启用', '0' => '禁用']);
         }); //筛选
         $grid->expandFilter(); //展开筛选
 
@@ -105,16 +108,18 @@ class ExampleController extends AdminController
 
         $grid->tools(function (Grid\Tools $tools) {
             $tools->append(new ReportPost());
+
+            $map=[];//excel列名与数据表名的对应关系  
+               
             $tools->append(new ImportPost());
         });
-
-
         $grid->header(function ($query) {
             return 'header';
         });
         
         $grid->footer(function ($query) {
-            return 'footer'; 
+            $data = $query->where('status', 1)->sum('hit');
+            return "<div style='padding: 10px;'>状态为启用的总点击量 ： $data</div>";
         });
 
         return $grid;
