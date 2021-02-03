@@ -3,11 +3,12 @@
 namespace App\Admin\Actions\Post;
 
 use Encore\Admin\Actions\Action;
+use Encore\Admin\Actions\Interactor\Form;
 use Illuminate\Http\Request;
 
 class ImportPost extends Action
 {
-    public $name = '导入数据';
+    public $name = '导入数据title';
 
     protected $selector = '.import-post';
 
@@ -27,7 +28,7 @@ class ImportPost extends Action
     public function html()
     {
         return <<<HTML
-        <a class="btn btn-sm btn-default import-post"><i class="fa fa-upload"></i>导入数据</a>
+        <a class="btn btn-sm btn-default import-post"><i class="fa fa-upload"></i>我是按钮导入数据</a>
 HTML;
     }
 }
