@@ -148,12 +148,15 @@ class ExampleController extends AdminController
         admin_error('admin_error...', 'warning');
         Admin::script('console.log("hello world");');
 
+        
 
         $form = new Form(new ExampleModel);
         $form->display('id', __('ID'));
         $form->display('created_at', __('Created At'));
         $form->display('updated_at', __('Updated At'));
-        $form->text('title', __('admin.title'))->placeholder('请输入标题');
+        $form->text('title', __('admin.title'))->placeholder('请输入标题')
+            ->creationRules(['required', "unique:example"])
+            ->updateRules(['required', "unique:example,title,{{id}}"]);
         $form->number('hit', '点击量')->rules('min:0');
         $form->textarea('content', __('admin.content'));
         $form->url('address', __('admin.address'))->rules('min:10');
