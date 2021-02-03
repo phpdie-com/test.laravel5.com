@@ -4,6 +4,7 @@ namespace App\Admin\Actions\Post;
 
 use Encore\Admin\Actions\Action;
 use Encore\Admin\Actions\Interactor\Form;
+use Encore\Admin\Actions\Interactor\Dialog;
 use Illuminate\Http\Request;
 
 class ImportPost extends Action
@@ -24,6 +25,10 @@ class ImportPost extends Action
     {
         $this->file('file', '请选择文件');
     }
+
+    // public function dialog(){
+    //     $this->info('ggg'.'dss');
+    // }
 
     public function html()
     {
