@@ -112,6 +112,7 @@ class ExampleController extends AdminController
             $map=[];//excel列名与数据表名的对应关系  
                
             $tools->append(new ImportPost());
+            // $tools->append(new \App\Admin\Tools\ImportExcel());//暂时未完成
         });
         $grid->header(function ($query) {
             return 'header';

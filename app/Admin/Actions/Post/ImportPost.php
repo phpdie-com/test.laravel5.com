@@ -24,6 +24,8 @@ class ImportPost extends Action
     public function form()
     {
         $this->file('file', '请选择文件');
+        dump(get_class($this));
+        dump(get_class_methods($this));
     }
 
     // public function dialog(){
@@ -33,7 +35,7 @@ class ImportPost extends Action
     public function html()
     {
         return <<<HTML
-        <a class="btn btn-sm btn-default import-post"><i class="fa fa-upload"></i>我是按钮导入数据</a>
+        <a class="btn btn-sm btn-info import-post"><i class="fa fa-upload"></i>我是按钮导入数据</a>
 HTML;
     }
 }
